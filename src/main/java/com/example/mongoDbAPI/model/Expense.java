@@ -1,5 +1,7 @@
 package com.example.mongoDbAPI.model;
 
+import io.swagger.annotations.ApiModelProperty;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.aggregation.ArithmeticOperators;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -12,11 +14,14 @@ import java.math.BigDecimal;
 public class Expense implements Comparable <Expense>{
     @Id
     private String id ;
+    @ApiModelProperty(notes = "Expense name", name = "exenseName",required = true, value = "Food Expense")
     @Field(name = "name")
     @Indexed(unique = true)
     private String expenseName;
+    @ApiModelProperty(notes = "Expense category must be one of the following  ENTERTAIMENT, GROCERIRES, RESTAURANT", name = "expenseCategory",required = true, value = "GROCERIRES")
     @Field(name = "category")
     private ExpenseCategory expenseCategory;
+    @ApiModelProperty(notes = "Must be Greater than 0", name = "amount",required = true, value = "1")
     @Field(name = "amount")
     private BigDecimal expenseAmount;
 
